@@ -1,0 +1,148 @@
+<? ini_set("display_errors", 0);?>
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dynamic Component Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .tab-button {
+      padding: 6px 10px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f0f0f0;
+      margin-bottom: -1px;
+      margin-right: -1px;
+    }
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+    .tab-button.active {
+      background: #e0e0e0;
+    }
+    .tab {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"> 
+      <button v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:class="['tab-button', { active: currentTab === tab }]"
+              v-on:click="currentTab = tab" >{{ tab }} </button>
+
+      <component
+        v-bind:is="currentTabComponent"
+        class="tab"
+        :posts="posts"
+        :post="posts[clickedPostNo]"
+        v-on:post-clicked="postClicked"
+      ></component>
+  </div>
+  <script>
+    Vue.component("blog-post", {
+      template: `
+      <div v-on:click="$emit('post-clicked', post.id);">
+        <h3>{{ post.title}}</h3>
+        <p>{{ post.description}}</p>
+      </div>`,
+      props:["post"]
+    });
+
+    Vue.component("blog-list", {
+      template:`
+      <div>
+        <blog-post v-for="post in posts"
+                   :key="post.id"
+                   :post="post"
+                   v-on:post-clicked="bubbleUpEvent"
+        ></blog-post>
+      </div>
+      `,
+      props: ["posts"],
+      methods:{
+        bubbleUpEvent(id) {
+          this.$emit('post-clicked', id);
+        }
+      },
+      created() {
+        // console.log("blog-list created");
+      },
+      beforeDestroy() {
+        // console.log("blog-list about to destroy");
+        // console.log(this.$children[0].$attr.post);
+      },
+      destroyed() {
+        // console.log("blog-list destroyed");
+        // console.log(this.$children[0].$attr.post);
+      }
+    });
+
+    Vue.component("blog-read", {
+      template: `
+      <div>
+        <h1>{{ post.title}}</h1>
+        <p>{{ post.description}}</p>
+      </div>
+      `,
+      props: ["post"],
+      created() {
+        // console.log("blog-read created");
+      },
+      destroyed() {
+        // console.log("blog-read destroyed");
+      }
+    })
+
+    Vue.component("blog-about", {
+      template: `
+      <div>
+        <h3>My Blog</h3>
+        <p>My Awsome Blog!</p>
+      </div>
+      `,
+      created() {
+        // console.log("blog-about created");
+      },
+      destroyed() {
+        // console.log("blog-about destroyed");
+      }
+    })
+
+    let vm=new Vue({
+      el:"#app",
+      data: {
+        posts:[
+          {id:0, title:"Blog Post 1", description: "Lorem Ipsum 1"},
+          {id:1, title:"Blog Post 2", description: "Lorem Ipsum 2"},
+          {id:2, title:"Blog Post 3", description: "Lorem Ipsum 3"}
+        ],
+        clicked: false,
+        clickedPostNo: 0,
+        tabs:["List", "Read", "About"],
+        currentTab: "List"
+      },
+      methods: {
+        postClicked(id) {
+        this.currentTab=this.tabs[1];
+        this.clickedPostNo=id;
+        }
+      },
+      created() {
+        this.curerntTab=this.tabs[this.clickedPostNo];
+      },
+      computed: {
+        currentTabComponent: function() {
+          return "blog-"+this.currentTab.toLowerCase();
+        }
+      }
+    })
+  </script>
+</body>
+</html>

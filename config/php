@@ -1,0 +1,20 @@
+
+
+        console.log("에디터 만들어진거지?");
+		CKEDITOR.ClassicEditor.create( document.querySelector( '#content' ),
+{ aa: 111,  
+
+"toolbar":{"items":["findAndReplace","selectAll","|"],"shouldNotGroupWhenFull":true},
+"removePlugins":["ExportPdf","ExportWord","CKBox","CKFinder","EasyImage","Base64UploadAdapter","RealTimeCollaborativeComments",
+"RealTimeCollaborativeTrackChanges","RealTimeCollaborativeRevisionHistory",
+"PresenceList","Comments","TrackChanges","TrackChangesData","RevisionHistory","Pagination","WProofreader","MathType"]}  
+
+
+
+ )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( error => {
+			console.log(  error );
+		} );
