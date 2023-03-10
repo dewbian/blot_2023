@@ -2,11 +2,10 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'aaa') }}</title>
+    <title>{{ config('app.name', 'b-lot') }}</title>
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
@@ -21,14 +20,11 @@
                         </a>
                     </div>
                     <div class="flex-1 text-right">
-
                         <div class="top-right links">
                             <a href="{{ url('/master') }}">관리자 페이지</a><br><br>  
                             <a href="{{ url('/portfolio') }}">포트폴리오</a><br><br>  
                             <a href="{{ $url = route('portfolio.all') }}">Get all portfolios by API</a>  
                         </div>  
-
-
                         @if (Route::has('login'))
                         <div class="top-right links">
                         @auth

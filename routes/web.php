@@ -24,7 +24,13 @@ Route::post('ck-editor/image/upload', '\Encore\Admin\Controllers\AdminController
 Route::get('/instagram/feed', 'InstagramController@getFeed')->name('instagram.all');
 Route::get('/portfolio', function(){
     return view('port');
-});
+}); 
+//포트폴리오
 Route::get('/portfolio1', function(){
     return view('portfolio');
 });
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
