@@ -49777,7 +49777,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component("the-chat", __webpack_require__(/*! ./components/(x)Chat.vue */ "./resources/js/components/(x)Chat.vue")["default"]);
+//Vue.component("the-chat" , require('./components/(x)Chat.vue').default); 
 Vue.component("portfolio-root", __webpack_require__(/*! ./components/PortfolioRoot.vue */ "./resources/js/components/PortfolioRoot.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49837,17 +49837,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/(x)Chat.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/components/(x)Chat.vue ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\blot_2023\\resources\\js\\components\\(x)Chat.vue'");
 
 /***/ }),
 

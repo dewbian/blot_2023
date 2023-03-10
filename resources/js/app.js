@@ -21,7 +21,7 @@ window.Vue = require('vue');
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component("the-chat" , require('./components/(x)Chat.vue').default); 
+//Vue.component("the-chat" , require('./components/(x)Chat.vue').default); 
 Vue.component("portfolio-root" , require('./components/PortfolioRoot.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
